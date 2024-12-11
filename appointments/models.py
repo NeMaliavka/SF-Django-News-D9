@@ -24,3 +24,17 @@ class Appoint(models.Model):
 
     def __str__(self):
         return f'{self.idpk}'
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Subscription(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.user.username} subscribed to {self.category.name}'
