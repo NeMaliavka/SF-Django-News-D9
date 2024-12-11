@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width-device-width, initial-scale =1.0" name="viewpoint">
+    <title>Запись</title>
+</head>
+<body>
+<h1>Назначить встречу</h1>
+<form action="{% url 'appointments:make_appointment' %}" enctype="multipart/form-data" method="POST">
+    {% csrf_token%}
+    <label for="client_name">Имя</label>
+    <input name="client_name" type="text"><br>
+    <label for="message">Краткое описание вашей проблемы</label>
+    <input name="message" type="text"><br>
+    <label for="date">Выберите время</label>
+    <input name="date" type="date"><br>
+    <input type="submit">
+</form>
+</body>
+</html>
