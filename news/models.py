@@ -46,6 +46,10 @@ class Post(models.Model):
     def preview(self):
         return f"{self.text[:124]}..."
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('news_detail', args=[self.id])
+
 
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
