@@ -13,6 +13,16 @@ class BaseRegisterView(CreateView):
     form_class = BaseRegisterForm
     success_url = '/'
 
+    def form_valid(self, form):
+        user = super().form_valid(form)
+        send_mail(
+            subject='Welcome to our site!',
+            message='Thank you for registering! You can now subscribe to categories.',
+            from_email='alice-for-me@yandex.ru',
+            recipient_list=[user.email],
+        )
+        return user
+
 
 @login_required
 def upgrade_me(request):
